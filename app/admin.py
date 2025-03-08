@@ -4,3 +4,4 @@ from app.models import *
 
 admin.site.register(ItemList)
 admin.site.register(Items)
+admin.site.register(More)
