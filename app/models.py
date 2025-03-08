@@ -17,3 +17,7 @@ class Items(models.Model):
     def __str__(self):
         return self.Item_name
 
+class More(models.Model):
+    Item_name = models.ForeignKey(Items,on_delete=models.CASCADE, related_name='name')
+    proimage = models.ImageField(upload_to='items/')
+    description = models.TextField(blank=False)
