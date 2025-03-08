@@ -49,14 +49,14 @@
 
         <ul class="filters_menu">
             <li class="active" data-filter="*">All</li>
-            {% for i in list %}
+            {% for i in cate %}
                 <li data-filter=".{{ i.Category_name|slugify }}">{{ i.Category_name }}</li>
             {% endfor %}           
         </ul>
 
         <div class="filters-content">
             <div class="row grid">
-                {% for j in items %}
+                {% for j in item %}
                     <div class="col-sm-6 col-lg-4 all {{ j.Category|slugify }}">
                         <div class="box">
                             <div>
