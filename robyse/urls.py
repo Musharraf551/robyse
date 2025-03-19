@@ -23,6 +23,7 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',home_view, name='home_view'),
+    path('instance/<int:pk>/', instance_detail, name='instance_detail'),
 
 ]
 if settings.DEBUG:
