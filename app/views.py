@@ -30,3 +30,6 @@ def booking_view(request, pk):
         form = BookingForm()
 
     return render(request, 'booking_form.html', {'form': form, 'instance': instance})
+
+def booking_success(request):
+    return render(request, 'booking_success.html')
