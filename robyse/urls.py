@@ -26,6 +26,7 @@ urlpatterns = [
     path('instance/<int:pk>/', instance_detail, name='instance_detail'),
     path('book/<int:pk>/', booking_view, name='booking'),
     path('booking-success/', booking_success, name='booking_success'),
+    path('feedback/<int:pk>/', feedback_view, name='feedback'),
     
 
 ]
