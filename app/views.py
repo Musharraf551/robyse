@@ -33,3 +33,19 @@ def booking_view(request, pk):
 
 def booking_success(request):
     return render(request, 'booking_success.html')
+
+def feedback_view(request, pk):
+    instance = get_object_or_404(Model1, pk=pk)  # Get the related object
+
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.name = instance  # Assign ForeignKey object, not instance.name
+            feedback.save()
+            return redirect('home')  # Redirect to home or success page
+    
+    else:
+        form = FeedbackForm()  # Fixed: Use FeedbackForm
+
+    return render(request, 'feedback_form.html', {'form': form, 'instance': instance})
