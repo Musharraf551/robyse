@@ -5,3 +5,4 @@ from app.models import *
 admin.site.register(Category)
 admin.site.register(Model1)
 admin.site.register(Booking)
+admin.site.register(Review)
