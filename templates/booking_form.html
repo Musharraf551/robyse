@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<h1>Book {{ instance.name }}</h1>
+<p><strong>Price:</strong> ${{ instance.price }}</p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Booking</button>
+</form>
+
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock content %}
+
