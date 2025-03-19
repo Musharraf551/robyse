@@ -21,3 +21,14 @@ class Model1(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Booking(models.Model):
+    instance = models.ForeignKey('Model1', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)  # Auto-filled
+    price = models.DecimalField(max_digits=10, decimal_places=2)  # Auto-filled
+    date = models.DateField()
+    time_slot = models.CharField(max_length=50)
+    number_of_people = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"Booking for {self.name} on {self.date}"
