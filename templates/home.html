@@ -56,10 +56,12 @@
     {% for k in instances %}
     <div class="col">
       <div class="card">
+        <a href="{% url 'instance_detail' k.pk %}">
         <img src="{{ k.image.url }}" class="card-img-top" alt="{{ k.image.url }}">
         <div class="card-body">
           <h5 class="card-title">{{k.name}}</h5>
         </div>
+        </a>
       </div>
     </div>
     {% endfor %}
