@@ -1,3 +1,41 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}{% endblock content %}
+{% block content %}
+
+
+
+{% comment %} ------------------- {% endcomment %}
+<h2 align = 'center'>Items in Category: {{ category.name }}</h2><hr>
+<section>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for item in instances %}
+            <div class="col">
+              <div class="card">
+                <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ item.name }}</h5>
+                  <p class="card-text">{{ item.description }}</p>
+                  <b><p class="card-text">{{ item.location }}</p></b>
+                  <h3 class="card-title">{{ item.price }}</h5>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'instance_detail' item.pk %}">
+                    <button class="btn btn-primary me-md-2" type="button">More</button>
+                    </a>&emsp;
+                    <a href="{% url 'booking' item.pk %}">
+                        <button class="btn btn-dark" type="button">Book Now</button>&emsp;    
+                    </a>
+                    
+                  </div><br>
+              </div>
+            </div>
+            {% empty %}
+            <p>No items found in this category.</p>
+            {% endfor %}
+          </div>
+    </div>
+</section>
+{% comment %} <a href="{% url 'home' %}">Back</a> {% endcomment %}
+
+{% endblock content %}
