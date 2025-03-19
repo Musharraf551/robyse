@@ -24,7 +24,8 @@
 </div>
 {% endblock slider %}
 {% block content %}
-<hr><hr>
+<hr><b><h1 align = 'center'>Categories</h1></b><hr>
+
 <section>
   <div class ="container">
     <div class="row">
@@ -46,17 +47,26 @@
     </div>
   </div>
 </section>
+<hr><b><h1 align = 'center'>Browse Hotels</h1></b><hr>
 <section>
   <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+ 
+
     {% for k in instances %}
-    <div class="card" style="width: 18rem;">
-      <img src="{{ k.image.url }}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">{{k.description}}</p>
+    <div class="col">
+      <div class="card">
+        <img src="{{ k.image.url }}" class="card-img-top" alt="{{ k.image.url }}">
+        <div class="card-body">
+          <h5 class="card-title">{{k.name}}</h5>
+        </div>
       </div>
-    </div>  
+    </div>
     {% endfor %}
+    <hr>
   </div>
+  </div>
+
 </section>
 {% endblock content %}
 
