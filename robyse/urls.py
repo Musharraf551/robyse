@@ -23,6 +23,7 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',home_view, name='home_view'),
+    path('category/<int:pk>/', category_detail, name='category_detail'),
     path('instance/<int:pk>/', instance_detail, name='instance_detail'),
     path('book/<int:pk>/', booking_view, name='booking'),
     path('booking-success/', booking_success, name='booking_success'),
