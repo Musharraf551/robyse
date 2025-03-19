@@ -10,8 +10,8 @@ def home_view(request):
 
 def instance_detail(request, pk):
     instance = get_object_or_404(Model1, pk=pk)
-    #reviews = instance.reviews.all()
-    return render(request, 'instance_detail.html', {'instance': instance})
+    reviews = instance.reviews.all()
+    return render(request, 'instance_detail.html', {'instance': instance, 'reviews':reviews})
 
 def booking_view(request, pk):
     instance = get_object_or_404(Model1, pk=pk)
