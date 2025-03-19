@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',home_view, name='home_view'),
     path('instance/<int:pk>/', instance_detail, name='instance_detail'),
+    path('book/<int:pk>/', booking_view, name='booking'),
 
 ]
 if settings.DEBUG:
