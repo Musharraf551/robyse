@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
-{% block main %}
+{% block content %}
     <section>
-        <div class="container">
+        <div >
             <div class="card mb-3">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.image.url }}">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h5 class="card-title">{{instance.name}}</h5>
+                  <p class="card-text">{{instance.description}}</p>
                   <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                 </div>
               </div>
         </div>
     </section>
-{% endblock main %}
+{% endblock content %}
