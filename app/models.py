@@ -32,3 +32,13 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking for {self.name} on {self.date}"
+    
+class Review(models.Model):
+    name = models.ForeignKey('Model1', on_delete=models.CASCADE, related_name='reviews')
+    reviewer_name = models.CharField(max_length=255)
+    date = models.DateField()
+    comment = models.TextField()
+    rating = models.IntegerField()
+
+    def __str__(self):
+        return f"Review by {self.reviewer_name} for {self.name.name}"

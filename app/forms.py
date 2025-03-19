@@ -1,5 +1,5 @@
 from django import forms
-from .models import Booking, Review
+from .models import *
 
 class BookingForm(forms.ModelForm):
     class Meta:
