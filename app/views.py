@@ -49,3 +49,9 @@ def feedback_view(request, pk):
         form = FeedbackForm()  # Fixed: Use FeedbackForm
 
     return render(request, 'feedback_form.html', {'form': form, 'instance': instance})
+
+def category_detail(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    instances = Model1.objects.filter(category=category)  # Filter instances by category
+
+    return render(request, 'category_detail.html', {'category': category, 'instances': instances})
