@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from app.models import *
-from django.views.generic import DetailView
+from app.forms import *
+
 # Create your views here.
 def home_view(request):
     categories = Category.objects.all()
@@ -11,3 +12,21 @@ def instance_detail(request, pk):
     instance = get_object_or_404(Model1, pk=pk)
     #reviews = instance.reviews.all()
     return render(request, 'instance_detail.html', {'instance': instance})
+
+def booking_view(request, pk):
+    instance = get_object_or_404(Model1, pk=pk)
+
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.instance = instance
+            booking.name = instance.name  # Auto-fill name
+            booking.price = instance.price  # Auto-fill price
+            booking.save()
+            return redirect('booking_success')  # Redirect to a success page
+    
+    else:
+        form = BookingForm()
+
+    return render(request, 'booking_form.html', {'form': form, 'instance': instance})
