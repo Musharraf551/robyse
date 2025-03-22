@@ -42,11 +42,12 @@ def feedback_view(request, pk):
     instance = get_object_or_404(Model1, pk=pk)  # Get the related object
 
     if request.method == 'POST':
-        form = FeedbackForm(request.POST)
+        form = FeedbackForm(request.POST, user = request.user)
         if form.is_valid():
             feedback = form.save(commit=False)
             feedback.instance = instance  # Assign ForeignKey object, not instance.name
             feedback.name=instance.name
+            feedback.user = request.user
             feedback.save()
             return redirect('home_view')  # Redirect to home or success page
     
