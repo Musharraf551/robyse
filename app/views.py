@@ -41,9 +41,10 @@ def feedback_view(request, pk):
         form = FeedbackForm(request.POST)
         if form.is_valid():
             feedback = form.save(commit=False)
-            feedback.name = instance  # Assign ForeignKey object, not instance.name
+            feedback.instance = instance  # Assign ForeignKey object, not instance.name
+            feedback.name=instance.name
             feedback.save()
-            return redirect('booking_success')  # Redirect to home or success page
+            return redirect('home_view')  # Redirect to home or success page
     
     else:
         form = FeedbackForm()  # Fixed: Use FeedbackForm

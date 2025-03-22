@@ -17,7 +17,7 @@
                   <h5 class="card-title">{{ item.name }}</h5>
                   <p class="card-text">{{ item.description }}</p>
                   <b><p class="card-text">{{ item.location }}</p></b>
-                  <h3 class="card-title">{{ item.price }}</h5>
+                  <h3 class="card-title">₹{{ item.price }}</h5>
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <a href="{% url 'instance_detail' item.pk %}">

@@ -34,7 +34,8 @@ class Booking(models.Model):
         return f"Booking for {self.name} on {self.date}"
     
 class Review(models.Model):
-    name = models.ForeignKey('Model1', on_delete=models.CASCADE, related_name='reviews')
+    instance = models.ForeignKey('Model1', on_delete=models.CASCADE, related_name='reviews')
+    name = models.CharField(max_length=255)  # Auto-filled
     reviewer_name = models.CharField(max_length=255)
     date = models.DateField()
     comment = models.TextField()
