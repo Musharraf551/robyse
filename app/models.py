@@ -37,7 +37,8 @@ class Booking(models.Model):
 class Review(models.Model):
     instance = models.ForeignKey('Model1', on_delete=models.CASCADE, related_name='reviews')
     name = models.CharField(max_length=255)  # Auto-filled
-    reviewer_name = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='feedback')
+    # reviewer_name = models.CharField(max_length=255)
     date = models.DateField()
     comment = models.TextField()
     rating = models.IntegerField()
