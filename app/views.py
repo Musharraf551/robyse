@@ -4,6 +4,7 @@ from app.forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -89,3 +90,9 @@ def LoginView(request):
 def LogoutView(request):
     logout(request)  # Logs the user out
     return redirect('Home')  # Redirects to the home page
+
+@login_required
+def dashboard(request):
+    user = request.user
+    bookings = user.bookings.all()  
+    return render(request, 'dashboard.html', {'bookings': bookings})
