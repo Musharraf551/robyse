@@ -56,3 +56,15 @@ def category_detail(request, pk):
     instances = Model1.objects.filter(category=category)  # Filter instances by category
 
     return render(request, 'category_detail.html', {'category': category, 'instances': instances})
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been created! Please log in.')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'signup.html', {'form': form})
