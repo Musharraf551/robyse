@@ -94,5 +94,6 @@ def LogoutView(request):
 @login_required
 def dashboard(request):
     user = request.user
-    bookings = user.bookings.all()  
-    return render(request, 'dashboard.html', {'bookings': bookings})
+    feedbacks = user.feedback.all()
+    bookings = user.booking.all()  
+    return render(request, 'dashboard.html', {'feedbacks':feedbacks,'bookings': bookings})

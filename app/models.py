@@ -25,6 +25,7 @@ class Model1(models.Model):
     
 class Booking(models.Model):
     instance = models.ForeignKey('Model1', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='booking')
     name = models.CharField(max_length=255)  # Auto-filled
     price = models.DecimalField(max_digits=10, decimal_places=2)  # Auto-filled
     date = models.DateField()
