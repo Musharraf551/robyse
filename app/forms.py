@@ -14,11 +14,14 @@ class BookingForm(forms.ModelForm):
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['reviewer_name','date','comment','rating']
+        fields = ['date','comment','rating']
         widgets = {
-            'reviewer_name': forms.TextInput(attrs={'type': 'text'}),
+            # 'reviewer_name': forms.TextInput(attrs={'type': 'text'}),
             'date': forms.DateInput(attrs={'type': 'date'}),
             
             'comment': forms.TextInput(attrs={'type': 'text'}),
             'rating': forms.NumberInput(attrs={'min': 1}),    
         }
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user  # Store the user instance if needed

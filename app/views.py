@@ -52,7 +52,7 @@ def feedback_view(request, pk):
             return redirect('home_view')  # Redirect to home or success page
     
     else:
-        form = FeedbackForm()  # Fixed: Use FeedbackForm
+        form = FeedbackForm(user = request.user)  # Fixed: Use FeedbackForm
 
     return render(request, 'feedback_form.html', {'form': form, 'instance': instance})
 
