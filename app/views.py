@@ -3,7 +3,8 @@ from app.models import *
 from app.forms import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 def home_view(request):
@@ -83,3 +84,7 @@ def LoginView(request):
         else:
             messages.error(request, "Invalid username or password")
     return render(request, 'login.html')
+
+def LogoutView(request):
+    logout(request)  # Logs the user out
+    return redirect('Home')  # Redirects to the home page
