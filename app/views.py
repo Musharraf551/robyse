@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from app.models import *
 from app.forms import *
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def home_view(request):
@@ -68,3 +71,15 @@ def signup(request):
         form = UserCreationForm()
 
     return render(request, 'signup.html', {'form': form})
+
+def LoginView(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')  # Ensure 'dashboard' is correctly mapped in urls.py
+        else:
+            messages.error(request, "Invalid username or password")
+    return render(request, 'login.html')
