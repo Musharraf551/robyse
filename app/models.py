@@ -39,7 +39,7 @@ class Review(models.Model):
     name = models.CharField(max_length=255)  # Auto-filled
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='feedback')
     # reviewer_name = models.CharField(max_length=255)
-    date = models.DateField()
+    date = models.DateTimeField(auto_now=True)
     comment = models.TextField()
     rating = models.IntegerField()
 

@@ -14,10 +14,10 @@ class BookingForm(forms.ModelForm):
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['date','comment','rating']
+        fields = ['comment','rating']
         widgets = {
             # 'reviewer_name': forms.TextInput(attrs={'type': 'text'}),
-            'date': forms.DateInput(attrs={'type': 'date'}),
+            # 'date': forms.DateInput(attrs={'type': 'date'}),
             
             'comment': forms.TextInput(attrs={'type': 'text'}),
             'rating': forms.NumberInput(attrs={'min': 1}),    
