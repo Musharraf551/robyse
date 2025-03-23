@@ -18,9 +18,7 @@ class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['comment','rating']
-        widgets = {
-
-            
+        widgets = {  
             'comment': forms.TextInput(attrs={'type': 'text'}),
             'rating': forms.NumberInput(attrs={'min': 1}),    
         }
@@ -28,7 +26,7 @@ class FeedbackForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.user = user  # Store the user instance if needed
         
-from django import forms
+
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
