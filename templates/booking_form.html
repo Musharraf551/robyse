@@ -1,15 +1,56 @@
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<h1>Book {{ instance.name }}</h1>
-<p><strong>Price:</strong> ${{ instance.price }}</p>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Booking</button>
-</form>
-
-{% comment %} <a href="{% url 'home' %}">Back to Home</a> {% endcomment %}
-{% endblock content %}
-
+ {% extends "base.html" %}
+ {% load static %}
+ 
+ {% block content %}
+ <div class="container my-5">
+     <div class="card shadow-lg p-4">
+         <h2 class="text-center mb-4">Book {{ instance.name }}</h2>
+         
+         <p class="text-center"><strong>Price:</strong> <span class="badge bg-success">${{ instance.price }}</span></p>
+ 
+         <form method="POST" class="needs-validation" novalidate>
+             {% csrf_token %}
+             
+             <!-- Django form fields with Bootstrap classes -->
+             <div class="mb-3">
+                 <label class="form-label" for="{{ form.date.id_for_label }}">Date</label>
+                 {{ form.date }}
+             </div>
+ 
+             <div class="mb-3">
+                 <label class="form-label" for="{{ form.time_slot.id_for_label }}">Time Slot</label>
+                 {{ form.time_slot }}
+             </div>
+ 
+             <div class="mb-3">
+                 <label class="form-label" for="{{ form.number_of_people.id_for_label }}">Number of People</label>
+                 {{ form.number_of_people }}
+             </div>
+ 
+             <button type="submit" class="btn btn-primary w-100">Submit Booking</button>
+         </form>
+ 
+         <div class="text-center mt-3">
+             <a href="{% url 'home_view' %}" class="btn btn-outline-secondary">Back to Home</a>
+         </div>
+     </div>
+ </div>
+ 
+ <!-- Bootstrap Styling for Form Fields -->
+ <style>
+     form input, form select {
+         width: 100%;
+         padding: 10px;
+         margin-top: 5px;
+         border-radius: 5px;
+         border: 1px solid #ccc;
+     }
+     form input:focus, form select:focus {
+         border-color: #007bff;
+         outline: none;
+         box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+     }
+ </style>
+ {% endblock content %}
+ 

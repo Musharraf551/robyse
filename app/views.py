@@ -18,6 +18,7 @@ def instance_detail(request, pk):
     reviews = instance.reviews.all()
     return render(request, 'instance_detail.html', {'instance': instance, 'reviews':reviews})
 
+@login_required
 def booking_view(request, pk):
     instance = get_object_or_404(Model1, pk=pk)
 
@@ -40,6 +41,7 @@ def booking_view(request, pk):
 def booking_success(request):
     return render(request, 'booking_success.html')
 
+@login_required
 def feedback_view(request, pk):
     instance = get_object_or_404(Model1, pk=pk)  # Get the related object
 

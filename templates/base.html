@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
+              <a class="navbar-brand" href="#">Robyse</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -44,7 +44,7 @@
     {% block slider %}{% endblock slider %}
     {% block content %}{% endblock content %}
     <!-- footer section -->
-    <footer>
+    {% comment %} <footer>
         <div class="card text-center">
             <div class="card-header">
               Featured
@@ -58,7 +58,59 @@
               2 days ago
             </div>
           </div>
-    </footer>
+    </footer> {% endcomment %}
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container text-center text-md-start">
+          <div class="row">
+              <!-- Logo and About -->
+              <div class="col-md-3 col-lg-3 col-xl-3 mx-auto">
+                  <h5 class="text-uppercase fw-bold">Your Brand</h5>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #ffcc00; height: 2px"/>
+                  <p>
+                      YourBrand provides the best services for your needs. Connect with us and stay updated.
+                  </p>
+              </div>
+  
+              <!-- Quick Links -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+                  <h5 class="text-uppercase fw-bold">Quick Links</h5>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #ffcc00; height: 2px"/>
+                  <p><a href="#" class="text-white text-decoration-none">Home</a></p>
+                  <p><a href="#" class="text-white text-decoration-none">About Us</a></p>
+                  {% comment %} <p><a href="#" class="text-white text-decoration-none">Services</a></p>
+                  <p><a href="#" class="text-white text-decoration-none">Contact</a></p> {% endcomment %}
+              </div>
+  
+              <!-- Contact -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+                  <h5 class="text-uppercase fw-bold">Contact</h5>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #ffcc00; height: 2px"/>
+                  <p><i class="fas fa-home me-2"></i> City, Country</p>
+                  {% comment %} <p><i class="fas fa-envelope me-2"></i> info@yourbrand.com</p>
+                  <p><i class="fas fa-phone me-2"></i> +123 456 789</p> {% endcomment %}
+              </div>
+  
+              <!-- Social Media -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto">
+                  <h5 class="text-uppercase fw-bold">Follow Us</h5>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #ffcc00; height: 2px"/>
+                  <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-twitter"></i></a>
+                  <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-instagram"></i></a>
+                  <a href="#" class="btn btn-outline-light btn-floating m-1"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+          </div>
+      </div>
+  
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2025 YourBrand. All Rights Reserved.
+      </div>
+  </footer>
+  
+  <!-- Bootstrap Icons (FontAwesome) -->
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+  
     <!-- footer section ends -->
 </body>
 {% block extrajs %}{% endblock extrajs %}

@@ -1,13 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<h1>Feedback for {{ instance.name }}</h1>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit feedback</button>
-</form>
+<div class="container mt-5">
+    <div class="card shadow-sm p-4">
+        <h2 class="text-center text-primary mb-4">Feedback for {{ instance.name }}</h2>
 
-{% comment %} <a href="{% url 'home' %}">Back to Home</a> {% endcomment %}
+        <form method="POST" class="needs-validation" novalidate>
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="id_comment" class="form-label">Comment:</label>
+                <textarea name="comment" id="id_comment" class="form-control" placeholder="Write your feedback..." required></textarea>
+                <div class="invalid-feedback">Please provide a comment.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_rating" class="form-label">Rating:</label>
+                <input type="number" name="rating" id="id_rating" class="form-control" min="1" max="5" placeholder="Rate (1-5)" required>
+                <div class="invalid-feedback">Please enter a rating between 1 and 5.</div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">Submit Feedback</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 {% endblock content %}
+
