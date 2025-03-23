@@ -4,23 +4,19 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import Booking
 
+
+        
 @receiver(post_save, sender=Booking)
 def send_booking_confirmation_email(sender, instance, created, **kwargs):
-    if created:  # Send email only when a new booking is created
-        subject = "Your Hotel Booking Confirmation"
-        message = f"Hello {instance.user.username},\n\n"
-        message += f"Your booking for {instance.instance.name} is confirmed!\n"
-        message += f"📍 Location: {instance.instance.location}\n"
-        message += f"💰 Price: ${instance.price}\n"
-        message += f"📅 Date: {instance.date}\n"
-        message += f"⏰ Time Slot: {instance.time_slot}\n"
-        message += f"👥 Guests: {instance.number_of_people}\n\n"
-        message += "Thank you for choosing our service!\nBest regards,\nHotel Management Team"
-
+    if created:  # Only send email when a new booking is created
+        user_email = instance.user.email  # Now this is guaranteed to exist
+        subject = "Booking Confirmation"
+        message = f"Hello {instance.user.username},\n\nYour booking for {instance.name} on {instance.date} has been confirmed.\n\nThank you!"
+        
         send_mail(
             subject,
             message,
             settings.EMAIL_HOST_USER,
-            [instance.user.email],  # Send email to the user who booked
+            [user_email],  # Send email to the user who booked
             fail_silently=False,
         )

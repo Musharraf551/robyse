@@ -64,17 +64,27 @@ def category_detail(request, pk):
 
     return render(request, 'category_detail.html', {'category': category, 'instances': instances})
 
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your account has been created! Please log in.')
-            return redirect('login')
-    else:
-        form = UserCreationForm()
+# def signup(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Your account has been created! Please log in.')
+#             return redirect('login')
+#     else:
+#         form = UserCreationForm()
 
-    return render(request, 'signup.html', {'form': form})
+#     return render(request, 'signup.html', {'form': form})
+def signup(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log in user after signup
+            return redirect("home_view")  # Redirect to home page
+    else:
+        form = CustomUserCreationForm()
+    return render(request, "signup.html", {"form": form})
 
 def LoginView(request):
     if request.method == 'POST':

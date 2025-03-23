@@ -19,8 +19,7 @@ class FeedbackForm(forms.ModelForm):
         model = Review
         fields = ['comment','rating']
         widgets = {
-            # 'reviewer_name': forms.TextInput(attrs={'type': 'text'}),
-            # 'date': forms.DateInput(attrs={'type': 'date'}),
+
             
             'comment': forms.TextInput(attrs={'type': 'text'}),
             'rating': forms.NumberInput(attrs={'min': 1}),    
@@ -28,3 +27,14 @@ class FeedbackForm(forms.ModelForm):
     def __init__(self, *args, user=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.user = user  # Store the user instance if needed
+        
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+class CustomUserCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)  # Make email required
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']  # Include email
