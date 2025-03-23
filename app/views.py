@@ -22,12 +22,13 @@ def booking_view(request, pk):
     instance = get_object_or_404(Model1, pk=pk)
 
     if request.method == 'POST':
-        form = BookingForm(request.POST)
+        form = BookingForm(request.POST, user = request.user)
         if form.is_valid():
             booking = form.save(commit=False)
             booking.instance = instance
             booking.name = instance.name  # Auto-fill name
             booking.price = instance.price  # Auto-fill price
+            booking.user = request.user
             booking.save()
             return redirect('booking_success')  # Redirect to a success page
     

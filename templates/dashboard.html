@@ -25,19 +25,23 @@
                     <table class="table table-bordered table-hover">
                         <thead class="table-light">
                             <tr>
+                                <th>User</th>
+                                <th>Hotel</th>
+                                <th>price</th>
                                 <th>Date</th>
+                                <th>time-slot</th>
                                 <th>Total People</th>
-                                <th>Phone Number</th>
-                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for booking in bookings %}
+                            {% for b in bookings %}
                                 <tr>
-                                    <td>{{ booking.booking_data }}</td>
-                                    <td>{{ booking.Total_person }}</td>
-                                    <td>{{ booking.Phone_number }}</td>
-                                    <td>{{ booking.Email }}</td>
+                                    <td>{{ b.user }}</td>
+                                    <td>{{ b.name }}</td>
+                                    <td>{{ b.price }}</td>
+                                    <td>{{ b.date }}</td>
+                                    <td>{{ b.time_slot }}</td>
+                                    <td>{{ b.number_of_people }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
