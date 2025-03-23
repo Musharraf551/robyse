@@ -108,3 +108,8 @@ def dashboard(request):
     feedbacks = user.feedback.all()
     bookings = user.booking.all()  
     return render(request, 'dashboard.html', {'feedbacks':feedbacks,'bookings': bookings})
+
+def about(request):
+    obj = About.objects.all()
+    d = {'obj': obj}
+    return render(request, 'about.html', d)
