@@ -46,3 +46,9 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review by {self.reviewer_name} for {self.name.name}"
+    
+class About(models.Model):
+    sitename = models.CharField(max_length=100)
+    about = models.CharField(max_length=255)
+    
+    
