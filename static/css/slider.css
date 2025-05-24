@@ -1,0 +1,36 @@
+.carousel-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.item {
+    flex: 0 0 calc(33.33% - 20px);
+    scroll-snap-align: start;
+    box-sizing: border-box;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 8px;
+}
