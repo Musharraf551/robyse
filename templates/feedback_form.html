@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 {% load static %}
 {% block content %}
 
@@ -8,16 +8,18 @@
 
         <form method="POST" class="needs-validation" novalidate>
             {% csrf_token %}
-            
+
             <div class="mb-3">
                 <label for="id_comment" class="form-label">Comment:</label>
-                <textarea name="comment" id="id_comment" class="form-control" placeholder="Write your feedback..." required></textarea>
+                <textarea name="comment" id="id_comment" class="form-control" placeholder="Write your feedback..."
+                    required></textarea>
                 <div class="invalid-feedback">Please provide a comment.</div>
             </div>
 
             <div class="mb-3">
                 <label for="id_rating" class="form-label">Rating:</label>
-                <input type="number" name="rating" id="id_rating" class="form-control" min="1" max="5" placeholder="Rate (1-5)" required>
+                <input type="number" name="rating" id="id_rating" class="form-control" min="1" max="5"
+                    placeholder="Rate (1-5)" required>
                 <div class="invalid-feedback">Please enter a rating between 1 and 5.</div>
             </div>
 
@@ -27,6 +29,6 @@
         </form>
     </div>
 </div>
+<br><br><br><br>
 
 {% endblock content %}
-
