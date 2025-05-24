@@ -1,76 +1,196 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 {% load static %}
 {% block slider %}
-
-<div id="carouselExampleFade" class="carousel slide carousel-fade">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{% static "images/robyse.png" %}" class="d-block w-100" alt="...">
+<div class="container-fluid p-0 mb-5">
+    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="{% static 'images/carousel-1.jpg' %}" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 700px;">
+                        <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
+                        <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
+                        <a href="{% url 'rooms' %}"
+                            class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
+                        <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="w-100" src="{% static 'images/carousel-2.jpg' %}" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 700px;">
+                        <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
+                        <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
+                        <a href="{% url 'rooms' %}"
+                            class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
+                        <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-    <div class="carousel-item">
-      <img src="{% static "images/robyse.png" %}" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static "images/robyse.png" %}" class="d-block w-100" alt="...">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
 </div>
 {% endblock slider %}
 {% block content %}
-<hr><b><h1 align = 'center'>Categories</h1></b><hr>
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
+    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
+</div>
+<div class="carousel-container">
 
-<section>
-  <div class ="container">
-    <div class="row">
-      <div class="col-4">
-        <div id="list-example" class="list-group">
-          {% for i in categories %}
-          <a class="list-group-item list-group-item-action" href="{% url 'category_detail' i.pk %}">{{i.name}}</a>
-          {% endfor %}      
-        </div>
-      </div>
-      <div class="col-8">
-        <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-          {% for i in categories %}
-          <h4 id="list-item-1">{{i.name}}</h4>
-          <p>{{i.description}}</p>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<hr><b><h1 align = 'center'>Browse Hotels</h1></b><hr>
-<section>
-  <marquee>
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-3">
- 
+    <button onclick="scrollLeftCarousel()">‹</button>
 
-    {% for k in instances %}
-    <div class="col">
-      <div class="card">
-        <a href="{% url 'instance_detail' k.pk %}">
-        <img src="{{ k.image.url }}" class="card-img-top" alt="{{ k.image.url }}">
-        <div class="card-body">
-          <h5 class="card-title">{{k.name}}</h5>
+    <div class="carousel" id="carousel">
+        {% for k in instances %}
+        <div class="item">
+            <div class="room-item shadow rounded overflow-hidden">
+                <div class="position-relative">
+                    <img class="img-fluid" src="{{ k.image.url }}" alt="{{ k.image.url }}">
+                    <small
+                        class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">${{k.price}}/Night</small>
+                </div>
+                <div class="p-4 mt-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h5 class="mb-0">{{k.name}}</h5>
+                        <div class="ps-2">
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                            <small class="fa fa-star text-primary"></small>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-3">
+                        <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
+                        <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
+                        <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                    </div>
+                    <p class="text-body mb-3">{{k.description}}</p>
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-sm btn-primary rounded py-2 px-4" href="{% url 'instance_detail' k.pk %}">View
+                            Detail</a>
+                        <a class="btn btn-sm btn-dark rounded py-2 px-4" href="{% url 'booking' k.pk %}">Book Now</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        </a>
-      </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-    <hr>
-  </div>
-  </div>
-</marquee>
-</section>
+
+    <button onclick="scrollRightCarousel()">›</button>
+</div>
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Our Categories</h6>
+            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Categories</span></h1>
+        </div>
+        <div class="row g-4">
+
+
+            {% for i in categories %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                <a class="service-item rounded" href="{% url 'category_detail' i.pk %}">
+                    <div class="service-icon bg-transparent border rounded p-1">
+                        <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                            <i class="bi bi-door-open fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                    <h5 class="mb-3">{{i.name}}</h5>
+                    <p class="text-body mb-0">{{i.description}}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+<!-- Video Start -->
+<div class="container-xxl py-5 px-0 wow zoomIn" data-wow-delay="0.1s">
+    <div class="row g-0">
+        <div class="col-md-6 bg-dark d-flex align-items-center">
+            <div class="p-5">
+                <h6 class="section-title text-start text-white text-uppercase mb-3">Luxury Living</h6>
+                <h1 class="text-white mb-4">Discover A Brand Luxurious Hotel</h1>
+                <p class="text-white mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
+                    diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat
+                    amet</p>
+                <a href="{% url 'rooms' %}" class="btn btn-primary py-md-3 px-md-5 me-3">Our Rooms</a>
+                <a href="" class="btn btn-light py-md-3 px-md-5">Book A Room</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="video">
+                <button type="button" class="btn-play" data-bs-toggle="modal"
+                    data-src="https://www.youtube.com/watch?v=qemqQHaeCYo" data-bs-target="#videoModal">
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 16:9 aspect ratio -->
+                <div class="ratio ratio-16x9">
+                    <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+                        allow="autoplay"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Video Start -->
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Our Team</h6>
+            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Staffs</span></h1>
+        </div>
+        <div class="row g-4">
+
+            {% for i in staff %}
+
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="rounded shadow overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{{i.image.url}}" alt="{{i.image.url}}">
+                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4 mt-3">
+                        <h5 class="fw-bold mb-0">{{i.name}}</h5>
+                        <small>{{i.designation}}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<br><br><br>
+<!-- Team End -->
 {% endblock content %}
-
