@@ -12,7 +12,8 @@ from django.http import HttpResponse
 def home_view(request):
     categories = Category.objects.all()
     instances = Model1.objects.all()
-    return render(request, 'home.html', {'categories': categories, 'instances': instances})
+    staff = Staffs.objects.all()
+    return render(request, 'home.html', {'categories': categories, 'instances': instances, 'staff':staff})
 
 def instance_detail(request, pk):
     instance = get_object_or_404(Model1, pk=pk)
@@ -54,7 +55,7 @@ def feedback_view(request, pk):
             feedback.name=instance.name
             feedback.user = request.user
             feedback.save()
-            return redirect('home_view')  # Redirect to home or success page
+            return redirect('rooms')  # Redirect to home or success page
         else:
             return HttpResponse('invalid data')
     
@@ -69,17 +70,6 @@ def category_detail(request, pk):
 
     return render(request, 'category_detail.html', {'category': category, 'instances': instances})
 
-# def signup(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Your account has been created! Please log in.')
-#             return redirect('login')
-#     else:
-#         form = UserCreationForm()
-
-#     return render(request, 'signup.html', {'form': form})
 def signup(request):
     if request.method == "POST":
         form = CustomUserCreationForm(request.POST)
@@ -118,3 +108,8 @@ def about(request):
     obj = About.objects.all()
     d = {'obj': obj}
     return render(request, 'about.html', d)
+
+
+def rooms(request):
+    categories = Category.objects.prefetch_related('model1_items').all()
+    return render(request, 'rooms.html',{'categories': categories})
