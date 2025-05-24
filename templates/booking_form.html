@@ -1,11 +1,10 @@
-
- {% extends "base.html" %}
- {% load static %}
+{% extends "base1.html" %}
+{% load static %}
  
- {% block content %}
+{% block content %}
  <div class="container my-5">
      <div class="card shadow-lg p-4">
-         <h2 class="text-center mb-4">Book {{ instance.name }}</h2>
+         <h2 class="text-center mb-4">Book <span class="text-primary text-uppercase">{{ instance.name }}</span></h2>
          
          <p class="text-center"><strong>Price:</strong> <span class="badge bg-primary">₹{{ instance.price }}</span></p>
  
@@ -36,7 +35,7 @@
          </div>
      </div>
  </div>
- 
+ <br><br><br>
  <!-- Bootstrap Styling for Form Fields -->
  <style>
      form input, form select {
@@ -52,5 +51,5 @@
          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
      }
  </style>
- {% endblock content %}
+{% endblock content %}
  
