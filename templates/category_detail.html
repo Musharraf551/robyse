@@ -1,41 +1,57 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 {% load static %}
 {% block content %}
-
-
-
-{% comment %} ------------------- {% endcomment %}
-<h2 align = 'center'>Items in Category: {{ category.name }}</h2><hr>
-<section>
+<!-- Room Start -->
+<div class="container-xxl py-5">
     <div class="container">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            {% for item in instances %}
-            <div class="col">
-              <div class="card">
-                <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
-                <div class="card-body">
-                  <h5 class="card-title">{{ item.name }}</h5>
-                  <p class="card-text">{{ item.description }}</p>
-                  <b><p class="card-text">{{ item.location }}</p></b>
-                  <h3 class="card-title">₹{{ item.price }}</h5>
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
+            <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">{{category.name}} rooms</span></h1>
+        </div>
+        <div class="row g-4">
+
+            {% for k in instances %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                <div class="room-item shadow rounded overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{{ k.image.url }}" alt="{{ k.image.url }}">
+                        <small
+                            class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">${{k.price}}/Night</small>
+                    </div>
+                    <div class="p-4 mt-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h5 class="mb-0">{{k.name}}</h5>
+                            <div class="ps-2">
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                                <small class="fa fa-star text-primary"></small>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
+                            <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2
+                                Bath</small>
+                            <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                        </div>
+                        <p class="text-body mb-3">{{k.description}}</p>
+                        <div class="d-flex justify-content-between">
+                            <a class="btn btn-sm btn-primary rounded py-2 px-4"
+                                href="{% url 'instance_detail' k.pk %}">View Detail</a>
+                            <a class="btn btn-sm btn-dark rounded py-2 px-4" href="{% url 'booking' k.pk %}">Book
+                                Now</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="{% url 'instance_detail' item.pk %}">
-                    <button class="btn btn-primary me-md-2" type="button">More</button>
-                    </a>&emsp;
-                    <a href="{% url 'booking' item.pk %}">
-                        <button class="btn btn-dark" type="button">Book Now</button>&emsp;    
-                    </a>
-                    
-                  </div><br>
-              </div>
             </div>
-            {% empty %}
-            <p>No items found in this category.</p>
             {% endfor %}
-          </div>
+        </div>
     </div>
-</section>
+</div>
+<!-- Room End -->
+<br><br><br>
+
 {% comment %} <a href="{% url 'home' %}">Back</a> {% endcomment %}
 
 {% endblock content %}
