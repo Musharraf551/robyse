@@ -1,18 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<style>
+    body{
+        background-image: url(/static/images/cover-bg.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
     <section>
         <div>
             <div class="card mb-3">
                 <img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.image.url }}"  margin = "10px">
                 <div class="card-body">
-                  <h5 class="card-title">{{instance.name}}</h5>
-                  <p class="card-text">{{instance.description}}</p>
-                  <p class="card-text">₹{{instance.price}}</p>
-                </div>
-              </div>
-        </div>
-        <div >
+                  <h5 class="card-title">{{instance.name}}</h5><hr>
+                  <p class="card-text"><b><i>Description : </i></b> {{instance.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab velit a, praesentium odit tempora quis vitae illum corporis eius aliquid recusandae non ipsum consequuntur sed eligendi doloremque nostrum quidem pariatur?</p>
+                  <div class=" d-flex justify-content-between">
+                    <p class="card-text">Price --- <b>₹{{instance.price}}</b></p>
+                    <p class="card-text">Rating --- <b>{{instance.rating}}</b></p>
+                  </div>
+                  
+                  <div class=" d-flex justify-content-between">
+                    <p class="card-text">Address --- <b>{{instance.location}}</b></p>
+                    <p class="card-text">Availability --- <b>{{instance.availability}}</b></p>
+                  </div><hr>
+                 
+                
+        
+        
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a href="{% url 'feedback' instance.pk %}">
                 <button class="btn btn-primary me-md-2" type="button">Feedback</button>
@@ -22,9 +37,12 @@
                 </a>
                 
               </div><br>
-        </div>
+        
+    </div>
+</div>
+    </div>
     </section>
-    <hr><b><h1 align = "center">Reviews</h1></b><hr>
+    <hr><b><h1 align = "center">----------Reviews----------</h1></b><hr>
     <section>
         <div class="container">
             {% if reviews %}

@@ -7,7 +7,7 @@
      <div class="card shadow-lg p-4">
          <h2 class="text-center mb-4">Book {{ instance.name }}</h2>
          
-         <p class="text-center"><strong>Price:</strong> <span class="badge bg-success">${{ instance.price }}</span></p>
+         <p class="text-center"><strong>Price:</strong> <span class="badge bg-primary">₹{{ instance.price }}</span></p>
  
          <form method="POST" class="needs-validation" novalidate>
              {% csrf_token %}

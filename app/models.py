@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.forms import ValidationError
 
 # Create your models here.
 class Category(models.Model):
@@ -34,6 +35,10 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking for {self.name} on {self.date}"
+
+def rating_len(value):
+    if value > 5 or value < 1:
+        raise ValidationError('rating should be in the range of 1-5')  
     
 class Review(models.Model):
     instance = models.ForeignKey('Model1', on_delete=models.CASCADE, related_name='reviews')
@@ -42,10 +47,12 @@ class Review(models.Model):
     # reviewer_name = models.CharField(max_length=255)
     date = models.DateTimeField(auto_now=True)
     comment = models.TextField()
-    rating = models.IntegerField()
+    rating = models.IntegerField(validators=[rating_len])
 
     def __str__(self):
         return f"Review by {self.reviewer_name} for {self.name.name}"
+    
+
     
 class About(models.Model):
     sitename = models.CharField(max_length=100)

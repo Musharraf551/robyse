@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -54,6 +55,8 @@ def feedback_view(request, pk):
             feedback.user = request.user
             feedback.save()
             return redirect('home_view')  # Redirect to home or success page
+        else:
+            return HttpResponse('invalid data')
     
     else:
         form = FeedbackForm(user = request.user)  # Fixed: Use FeedbackForm
