@@ -1,1 +1,30 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+*.pyd
 __pycache__/
+
+# Ignore environment files
+.env
+*.env
+venv/
+env/
+*.venv
+
+# Ignore Django-related files
+db.sqlite3
+media/
+staticfiles/
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# Ignore dependencies
+pip-wheel-metadata/
+__pypackages__/
